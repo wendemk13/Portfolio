@@ -95,8 +95,8 @@
                 "last_name": lastName,
                 "phone_number": phoneNumber,
                 "tx_ref": "test-" + new Date().getTime(), // Use a unique transaction reference
-                "callback_url": "https://webhook.site/your-callback-url",
-                "return_url": "https://yourwebsite.com/payment-success",
+                "callback_url": "https://webhook.site/your-callback-url",  // Replace with a valid callback URL
+                "return_url": "https://yourwebsite.com/payment-success",  // Replace with a valid return URL
                 "customization[title]": "Payment for Demo",
                 "customization[description]": "Test Payment Integration with Chapa",
                 "meta[hide_receipt]": "true"
@@ -109,10 +109,15 @@
                 redirect: 'follow'
             };
 
+            // Debugging: Log the request payload
+            console.log("Sending request to Chapa...");
+            console.log("Payload: ", raw);
+
             // Make API call to Chapa's initialization endpoint
             fetch("https://api.chapa.co/v1/transaction/initialize", requestOptions)
                 .then(response => response.json())
                 .then(result => {
+                    console.log("API Response: ", result);  // Log the response for debugging
                     if (result.status === "success") {
                         // Redirect to Chapa payment page
                         window.location.href = result.payment_url;
