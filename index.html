@@ -78,6 +78,7 @@
             if (!amount || !email || !firstName || !lastName || !phoneNumber) {
                 document.getElementById('errorMessage').innerText = 'All fields are required!';
                 document.getElementById('errorMessage').style.display = 'block';
+                alert("All fields are required!");  // Added alert for missing fields
                 return;
             }
 
@@ -119,12 +120,14 @@
                         // Handle failure
                         document.getElementById('errorMessage').innerText = 'Payment initialization failed: ' + result.message;
                         document.getElementById('errorMessage').style.display = 'block';
+                        alert("Payment initialization failed: " + result.message);  // Alert for failure
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
                     document.getElementById('errorMessage').innerText = 'An error occurred. Please try again later.';
                     document.getElementById('errorMessage').style.display = 'block';
+                    alert("An error occurred. Please try again later.");  // Alert for general errors
                 });
         });
     </script>
